@@ -2,7 +2,8 @@
 Cinema Ticket System (Java)
 This repository contains a Java-based project for a Cinema Ticket System. It is a simple application that allows users to purchase movie tickets and view information about available movies and showtimes.
 
-Features
+# Features
+
 Buy tickets for movies and showtimes
 View information about available movies and showtimes
 Keep track of ticket sales
