@@ -62,7 +62,7 @@ public class CinemaTicketSystem {
 
             if (discountedPrice < ticket.getTicketPrice()) {
                 ticket.setTicketPrice(discountedPrice);
-                System.out.println("\n" + "\u001B[32mDiscount code applied. \nNew ticket price: \u001B[0m$" + ticket.getTicketPrice() * 0.6);
+                System.out.println("\n" + "\u001B[32mDiscount code applied. \n\nNew ticket price: \u001B[0m$" + ticket.getTicketPrice() * 0.6);
             } else {
                 System.out.println("\033[31mNo discount applied.\033[0m");
             }
