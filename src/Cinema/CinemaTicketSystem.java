@@ -6,11 +6,11 @@ public class CinemaTicketSystem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to the Cinema Ticket System");
+        System.out.println("\033[32mWelcome to the Cinema Ticket System!\033[0m");
 
         int movieChoice;
         do {
-            System.out.println("Please select a movie to watch");
+            System.out.println("\033[32mPlease select a movie to watch:\033[0m");
             System.out.println("1 - Paper Towns");
             System.out.println("2 - Money Heist");
             System.out.println("3 - Matrix");
@@ -18,21 +18,21 @@ public class CinemaTicketSystem {
             movieChoice = sc.nextInt();
 
             if (movieChoice < 1 || movieChoice > 3) {
-                System.out.println("Invalid choice. Please select a movie from 1 to 3.");
+                System.out.println("\033[31mInvalid choice. Please select a movie from 1 to 3 from the list.\033[0m");
             }
         } while (movieChoice < 1 || movieChoice > 3);
 
         Movie[] movies = {
-                new Movie("The Dark Knight"),
-                new Movie("Inception"),
+                new Movie("Paper Towns"),
+                new Movie("Money Heist"),
                 new Movie("Matrix")
         };
 
         Movie movie = movies[movieChoice - 1];
 
-        System.out.println("You have selected " + movie.getMovieName() + ".");
+        System.out.println("\u001B[32mYou have selected \u001B[0m" + movie.getMovieName());
 
-        System.out.println("Please select a ticket type.");
+        System.out.println("\u001B[32mPlease select a ticket type: \u001B[0m");
         System.out.println("1 - Adult");
         System.out.println("2 - Child");
         System.out.println("3 - Student");
@@ -42,31 +42,39 @@ public class CinemaTicketSystem {
 
         Ticket ticket = new Ticket(ticketTypeChoice);
 
-        System.out.println("Ticket type chosen: " + ticket.getTicketType());
+        System.out.println("\u001B[32mTicket type chosen: \u001B[0m" + ticket.getTicketType());
         System.out.println("Price: $" + ticket.getTicketPrice());
 
-        System.out.println("Do you have a discount code? (yes/no)");
+        System.out.println("\u001B[32mDo you have a discount code?\u001B[0m yes/no");
         String discountCodeAnswer = sc.next();
 
+        while (!discountCodeAnswer.equalsIgnoreCase("yes") && !discountCodeAnswer.equalsIgnoreCase("no")) {
+            System.out.println("\033[31mInvalid answer. Please enter yes or no.\033[0m");
+            System.out.println("\u001B[32mDo you have a discount code?\u001B[0m yes/no");
+            discountCodeAnswer = sc.next();
+        }
+
         if (discountCodeAnswer.equalsIgnoreCase("yes")) {
-            System.out.println("Enter your discount code:");
+            System.out.println("\u001B[32mEnter your discount code: \u001B[0m");
             String discountCodeInput = sc.next();
 
             double discountedPrice = DiscountCode.applyDiscount(discountCodeInput, ticket.getTicketPrice());
 
             if (discountedPrice < ticket.getTicketPrice()) {
                 ticket.setTicketPrice(discountedPrice);
-                System.out.println("\n" + "Discount code applied. New ticket price: $" + ticket.getTicketPrice() * 0.6);
+                System.out.println("\n" + "\u001B[32mDiscount code applied. \nNew ticket price: \u001B[0m$" + ticket.getTicketPrice() * 0.6);
             } else {
-                System.out.println("Invalid discount code. No discount applied.");
+                System.out.println("\033[31mNo discount applied.\033[0m");
             }
         }
 
         if (discountCodeAnswer.equalsIgnoreCase("no")) {
             System.out.println("No discount applied.");
+            System.out.println("\u001B[32mYour ticket price:\u001B[0m$" + ticket.getTicketPrice());
         }
 
-        System.out.println("Thank you for using our Ticket System. Have a great event!");
+
+        System.out.println("\u001B[32mThank you for using our Ticket System. Have a great event!\u001B[0m");
     }
 }
 

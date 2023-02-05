@@ -24,7 +24,7 @@ public class Ticket {
                 ticketPrice = 35.00;
                 break;
             default:
-                System.out.println("default guess");
+                System.out.println("\033[31mDefault guess!\033[0m");
         }
     }
 
