@@ -48,9 +48,9 @@ public class CinemaTicketSystem {
         System.out.println("\u001B[32mDo you have a discount code?\u001B[0m yes/no");
         String discountCodeAnswer = sc.next();
 
+
         while (!discountCodeAnswer.equalsIgnoreCase("yes") && !discountCodeAnswer.equalsIgnoreCase("no")) {
-            System.out.println("\033[31mInvalid answer. Please enter yes or no.\033[0m");
-            System.out.println("\u001B[32mDo you have a discount code?\u001B[0m yes/no");
+            System.out.println("\033[31mInvalid answer.\033[0m Please enter '\u001B[32myes\u001B[0m' or '\u001B[32mno\u001B[0m'");
             discountCodeAnswer = sc.next();
         }
 
@@ -60,12 +60,14 @@ public class CinemaTicketSystem {
 
             double discountedPrice = DiscountCode.applyDiscount(discountCodeInput, ticket.getTicketPrice());
 
-            if (discountedPrice < ticket.getTicketPrice()) {
-                ticket.setTicketPrice(discountedPrice);
-                System.out.println("\n" + "\u001B[32mDiscount code applied. \n\nNew ticket price: \u001B[0m$" + ticket.getTicketPrice() * 0.6);
-            } else {
-                System.out.println("\033[31mNo discount applied.\033[0m");
+            while (discountedPrice >= ticket.getTicketPrice()) {
+                System.out.println("\033[31mInvalid discount code. Please enter a valid discount code.\033[0m");
+                discountCodeInput = sc.next();
+                discountedPrice = DiscountCode.applyDiscount(discountCodeInput, ticket.getTicketPrice());
             }
+
+            ticket.setTicketPrice(discountedPrice);
+            System.out.println("\n\n" + "Discount code applied. \n\n\u001B[32mNew ticket price: \u001B[0m$" + ticket.getTicketPrice() * 0.6);
         }
 
         if (discountCodeAnswer.equalsIgnoreCase("no")) {

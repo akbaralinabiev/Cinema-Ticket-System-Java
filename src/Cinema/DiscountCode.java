@@ -7,7 +7,7 @@ public class DiscountCode {
     private static final Map<String, Double> DISCOUNT_CODES = new HashMap<>();
 
     static {
-        DISCOUNT_CODES.put("AEHSTUDENT", 0.6);
+        DISCOUNT_CODES.put("AEH", 0.6);
     }
 
     public static double applyDiscount(String discountCode, double ticketPrice) {

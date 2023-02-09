@@ -9,7 +9,7 @@ public class Ticket {
         switch(ticketTypeChoice) {
             case 1:
                 ticketType = "Adult";
-                ticketPrice = 12.50;
+                ticketPrice = 12.00;
                 break;
             case 2:
                 ticketType = "Child";
@@ -45,3 +45,4 @@ public class Ticket {
 
     }
 }
+
